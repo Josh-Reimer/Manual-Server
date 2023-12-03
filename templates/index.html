@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manuals Admin Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/static/file_explorer.css">
+<link rel="stylesheet" href="/static/index.css">
+<link rel="stylesheet" href="/static/side_bar.css">
+</head>
+<body>
+
+<script src="/static/side_bar.js"></script>
+<script src="/static/model.js"></script>
+
+<div id="search_area">
+
+<div id="mySidenav" class="sidenav">
+
+<div class="menu_icon" onclick="transform_menu_icon(this)">
+<div class="bar1"></div>
+<div class="bar2"></div>
+<div class="bar3"></div>
+</div>
+
+<a href="about.html">About</a>
+<a href="settings.html">Settings</a>
+<a href="upload.html">Upload</a>
+<a href="database.html">Database</a>
+
+</div>
+
+<input id="search_box" type="search">
+<button id="search_button">search</button>
+</div>
+
+<div id="manual_explorer">
+<!-- maybe add flask code into webpage so that the file explorer can be populated on the server side - Done
+!!! - what about updating the menu? -the menu updates on the ui when you add it and if you reload the page it will also of course refresh
+-->
+{% include 'file_explorer.html' %}
+<!--when a folder is tapped, it should drop down into files, when a file is clicked, it should open to ???
+                                  pdf file            custom viewer with more info
+                                  -->
+</div>
+
+<div id="toolbar">
+  <!--
+<button onclick="delete_folder()" id="delete_button">
+<object id="trash_can" data="/static/trash_can.svg"></object>
+</button>
+-->
+<button onclick="delete_folder()" id="delete_button">
+      <svg width="48" height="48" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMinYMin">
+      <use xlink:href="#img-trash-can"></use>
+    </svg>
+</button>
+<!--
+<button onclick="add_folder()" id="add_button">
+<object id="add_icon" data="/static/matte_black_plus.svg"> </object>
+</button>
+-->
+<button onclick="add_folder()" id="add_button">
+      <svg width="48" height="48" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMinYMin">
+      <use xlink:href="#img-matte-black-plus"></use>
+    </svg>
+</button>
+</div>
+
+<div id="tester1"></div>
+
+<button type="button" onclick="display_file_names()">load data</button>
+<script src="/static/drop_down.js"></script>
+<script src="/static/controller.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+Manual_Server is a simple web app built with python3 flask and pure javascript for managing all your pdf manuals.

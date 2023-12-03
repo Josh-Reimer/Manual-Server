@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/static/side_bar.css">
+<meta charset="utf-8">
+<style>
+  #heading {
+    text-align: center;
+  }
+  #upload_area {
+    border-radius: 8px;
+    background-color: #999494;
+    margin-top: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .upload_boxes {
+    padding: 8%;
+    border-radius: 10px;
+  }
+  h4 {
+    padding-top: 3%;
+    padding-left: 3%;
+  }
+  #short_name_input {
+    margin: 8%;
+  }
+  #folder_selection {
+    padding: 4px;
+    margin-left: 8%;
+    border-radius: 10px;
+  }
+  input[type=file] {
+    border-radius: 10px;
+    padding: 4px;
+  }
+  #submit_button {
+    border-radius: 10px;
+    padding: 4px;
+  }
+</style>
+</head>
+<body>
+<div id="mySidenav" class="sidenav">
+
+<div class="menu_icon" onclick="transform_menu_icon(this)">
+<div class="bar1"></div>
+<div class="bar2"></div>
+<div class="bar3"></div>
+</div>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="settings.html">Settings</a>
+<a href="upload.html">Upload</a>
+<a href="database.html">Database</a>
+</div>
+<script src="/static/side_bar.js"></script>
+<h1 id="heading">Upload</h1>
+<div id="upload_area">
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+<h4>Select a pdf manual</h4>
+<input type="file" id="pdf_upload" class="upload_boxes" name="pdf_upload" required>
+<h4>Select a photo to be displayed</h4>
+<input type="file" id="photo_upload" class="upload_boxes" name="photo_upload" required>
+<h4>Choose folder to store manual in</h4>
+<select id="folder_selection" name="folder_selection" required>
+  {% for folder in folders %}
+    <option value="{{ folder }}">{{ folder }}</option>
+  {% endfor %}
+</select>
+
+<h4>Create a short name for the manual</h4>
+<input type="text" id="short_name_input" name="short_name_input" required>
+<input type="submit" id="submit_button">
+</form>
+
+</div>
+
+</body>
+</html>

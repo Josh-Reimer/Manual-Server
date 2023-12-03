@@ -1,0 +1,31 @@
+<!--
+this template will have the necessary code to generate the file explorers dynamic content
+-->
+{% include 'svg/spritesheet.svg' %}
+{% for item in folders_and_subfolders %}
+<button class="collapsible">
+  <svg onclick="make_delete_list('collapsible_{{item[0]}}')" id="collapsible_{{item[0]}}" class="thumbnail" width="32" height="32" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMinYMin">
+    <use xlink:href="#img-file-icon"></use>
+  </svg>
+  {{ item[0] }}
+</button>
+<div class="content">
+  {% for subitem in item[1] %}
+  <button class="manual_buttons">
+    <svg onclick="make_delete_list('content_|{{item[0]}}|{{subitem}}')" id="content_|{{item[0]}}|{{subitem}}" class="thumbnail" width="32" height="32" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMinYMin">
+      <use xlink:href="#img-file-icon"></use>
+    </svg>
+    {{ subitem }}
+  </button>
+  {% endfor %}
+</div>
+{% endfor %}
+
+<!--
+  TODO
+  make it so when you click on a manual(not a collapsible) that it opens to either a pdf viewer/download or some other manual item view
+-->
+<!--
+  TODO make a way to delete folders
+  - make sure to warn the user that all folders items will also be deleted
+-->

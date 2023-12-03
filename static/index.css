@@ -1,0 +1,47 @@
+#search_area {
+    text-align: center;
+    margin-bottom: 15%;
+  }
+  #search_box {
+    width: 60%;
+    height: 31px;
+    margin-left: 15%;
+    font-size: 19px;
+    border-radius: 10px;
+  }
+  #search_button {
+    height: 31px;
+    font-size: 19px;
+    border-radius: 10px;
+    border: none;
+  }
+    #manual_explorer {
+    width: 100%;
+    font-size: 12px;
+  }
+  #toolbar {
+    text-align: right;
+    margin-top: 3rem;
+  }
+  #add_icon {
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+  }
+  #add_button {
+    width: 3rem;
+    border: none;
+    outline: none;
+    background: none;
+  }
+  #trash_can {
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+  }
+  #delete_button{
+    width: 3rem;
+    border: none;
+    outline: none;
+    background: none;
+  }

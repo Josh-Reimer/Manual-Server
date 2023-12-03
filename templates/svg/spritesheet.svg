@@ -1,0 +1,17 @@
+<svg display="none">
+  <defs>
+    <g id="img-checkbox-icon">
+      <path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#0067F1" stroke-linecap="square" stroke-width="1.474" d="M3.63,0.75L20.29,0.75A2.55 2.55 0 0 1 22.84,3.30L22.84,18.59A2.55 2.55 0 0 1 20.29,21.13L3.63,21.13A2.55 2.55 0 0 1 1.08,18.59L1.08,3.30A2.55 2.55 0 0 1 3.63,0.75z" /><path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#0067F1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.354" d="M5.47,12.26L11.36,16.71L19.49,4.21" />
+    </g>
+    <g id="img-file-icon">
+      <path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#F4AB00" stroke-linecap="square" stroke-linejoin="round" stroke-width="1.785" d="M3.21,3.60L20.78,3.60A2.17 2.17 0 0 1 22.94,5.77L22.94,18.76A2.17 2.17 0 0 1 20.78,20.93L3.21,20.93A2.17 2.17 0 0 1 1.05,18.76L1.05,5.77A2.17 2.17 0 0 1 3.21,3.60z" /><path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#F4AB00" stroke-linecap="square" stroke-linejoin="round" stroke-width="1.785" d="M1.69,1.21L10.09,1.21A0.75 0.75 0 0 1 10.83,1.96L10.83,6.45A0.75 0.75 0 0 1 10.09,7.20L1.69,7.20A0.75 0.75 0 0 1 0.94,6.45L0.94,1.96A0.75 0.75 0 0 1 1.69,1.21z" />
+    </g>
+    <g id="img-trash-can">
+      <path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#3F3F3F" stroke-linecap="square" stroke-width="1.116" d="M7.34,8.05L17.93,8.05A1.52 1.52 0 0 1 19.45,9.56L19.45,18.67A1.52 1.52 0 0 1 17.93,20.19L7.34,20.19A1.52 1.52 0 0 1 5.82,18.67L5.82,9.56A1.52 1.52 0 0 1 7.34,8.05z" /><path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#3F3F3F" stroke-linecap="square" stroke-width="1.232" d="M6.44,1.92L18.91,1.92A0.43 0.43 0 0 1 19.34,2.35L19.34,4.93A0.43 0.43 0 0 1 18.91,5.36L6.44,5.36A0.43 0.43 0 0 1 6.01,4.93L6.01,2.35A0.43 0.43 0 0 1 6.44,1.92z" /><path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#3F3F3F" stroke-linecap="round" stroke-width="1.116" d="M8.26,10.03L8.26,18.20" /><path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#3F3F3F" stroke-linecap="round" stroke-width="1.116" d="M12.63,10.03L12.63,18.20" /><path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#3F3F3F" stroke-linecap="round" stroke-width="1.116" d="M17.15,10.03L17.15,18.20" /><path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#3F3F3F" stroke-linecap="square" stroke-width="1.232" d="M8.45,4.25L8.45,3.03" /><path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#3F3F3F" stroke-linecap="square" stroke-width="1.232" d="M12.67,4.25L12.67,3.03" /><path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#3F3F3F" stroke-linecap="square" stroke-width="1.232" d="M17.34,4.25L17.34,3.03" />
+    </g>
+    <g id="img-matte-black-plus">
+      <path xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" fill-opacity=".035" stroke="#3F3F3F" stroke-linecap="square" stroke-opacity=".98" stroke-width="1.214" d="M5.79,0.46L17.85,0.46A4.32 4.32 0 0 1 22.17,4.78L22.17,16.84A4.32 4.32 0 0 1 17.85,21.16L5.79,21.16A4.32 4.32 0 0 1 1.47,16.84L1.47,4.78A4.32 4.32 0 0 1 5.79,0.46z" /><path xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" fill-opacity=".035" stroke="#3F3F3F" stroke-linecap="round" stroke-opacity=".98" stroke-width="1.214" d="M6.00,11.00L18.00,11.00M11.82,4.81L11.82,16.81" />
+    </g>
+
+  </defs>
+</svg>
