@@ -91,8 +91,9 @@ def add_folder():
 @app.route('/delete_item')
 def delete_item():
 	junk_items = request.args.get("junk_items")
+	if junk_items == "":
+		return "zero junk items"
 	junk_items = junk_items.replace("%20"," ").replace("[","").replace("]","")
-	
 	junk_list = junk_items.split(",")
 	
 	#parsing junk items names into paths

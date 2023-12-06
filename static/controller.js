@@ -48,7 +48,7 @@ function add_folder() {
   }
 }
 
-var delete_list = [];
+var delete_list = [];   //delete_list stores the dom elements that are to be removed on the client side and moved to trash on the server side
 var icons_in_use = [];
 
 function make_delete_list(item_to_delete) {
@@ -103,6 +103,9 @@ function delete_folder() {
   let delete_list_string = "[";
   for (let thing of delete_list) {
     delete_list_string += thing.id+",";
+    //todo remove elements from dom
+    let parent_element = thing.parentElement;
+    parent_element.remove();
   }
   delete_list_string = delete_list_string.slice(0,-1);
   delete_list_string += "]";
