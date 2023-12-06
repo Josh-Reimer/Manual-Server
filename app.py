@@ -3,6 +3,18 @@ from flask import request
 from fileinput import filename
 import os
 import shutil
+import socket
+
+def get_ip():
+	s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+	try:
+		s.connect(("192.168.1.1",1))
+		ip = s.getsockname()[0]
+	except:
+		ip = "127.0.0.1"
+	finally:
+		s.close()
+	return ip
 
 app = Flask(__name__)
 
@@ -138,4 +150,5 @@ def save_uploads():
 		return "<h1>SUCCESS YOUR SUBMISSION HAS BEEN SAVED</h1>"
 		
 if __name__ == '__main__':
-	app.run(debug=True, host='localhost')
+	
+	app.run(debug=False, host=get_ip())
