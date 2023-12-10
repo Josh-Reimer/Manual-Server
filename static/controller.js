@@ -26,7 +26,7 @@ function get_file_explorer_contents() {
 }
 
 function add_folder() {
-  const folder_name = prompt("enter a name for your new folder","new_folder");
+  const folder_name = prompt("enter a name for your new folder", "new_folder");
   console.log("add_folder function called");
   if (folder_name != null) {
     const manual_explorer = document.getElementById("manual_explorer");
@@ -48,7 +48,7 @@ function add_folder() {
   }
 }
 
-var delete_list = [];   //delete_list stores the dom elements that are to be removed on the client side and moved to trash on the server side
+var delete_list = []; //delete_list stores the dom elements that are to be removed on the client side and moved to trash on the server side
 var icons_in_use = [];
 
 function make_delete_list(item_to_delete) {
@@ -100,27 +100,33 @@ function make_delete_list(item_to_delete) {
 }
 
 function delete_folder() {
-  console.log(delete_list.length);
-  if(delete_list.length != 0){
-    
-  
-  let delete_list_string = "[";
-  for (let thing of delete_list) {
-    delete_list_string += thing.id+",";
-    //remove elements from dom
-    let parent_element = thing.parentElement;
-    parent_element.remove();
-  }
-  delete_list_string = delete_list_string.slice(0,-1);
-  delete_list_string += "]";
-  console.log("are you sure you want to delete these items?\n"+delete_list_string);
-  // TODO ask for confirmation of delete before sending delete list to flask server
-  const url = "/delete_item?junk_items="+delete_list_string;
-  
-  load_url(url, function(responseText){
-    console.log(responseText);
-  });
-  
-  
+  //first check if there is anything selected before sending a delete request to server
+  if (delete_list.length != 0) {
+    let confirm_text = "";
+    if(delete_list.length > 1){
+      confirm_text = `Are you sure you want to delete these ${delete_list.length} items?`;
+    } else {
+      confirm_text = "Are you sure you want to delete 1 item?";
+    }
+    if (confirm(confirm_text)) {      // ask for confirmation of delete before sending delete list to flask server
+
+      let delete_list_string = "[";
+      for (let thing of delete_list) {
+        delete_list_string += thing.id+",";
+        //remove elements from dom
+        let parent_element = thing.parentElement;
+        parent_element.remove();
+      }
+      delete_list_string = delete_list_string.slice(0, -1);
+      delete_list_string += "]";
+      console.log("are you sure you want to delete these items?\n"+delete_list_string);
+
+      const url = "/delete_item?junk_items="+delete_list_string;
+
+      load_url(url, function(responseText) {
+        console.log(responseText);
+      });
+
+    }
   }
 }
