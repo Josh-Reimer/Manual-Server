@@ -147,7 +147,7 @@ def save_uploads():
 		
 		short_name_file = open(f"./static/manuals/{folder}/{new_folder_name}/{short_name}",'w')
 		short_name_file.close()
-		return "<h1>SUCCESS YOUR SUBMISSION HAS BEEN SAVED</h1>"
+		return render_template("upload_complete.html")
 		
 if __name__ == '__main__':
 	
