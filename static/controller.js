@@ -72,12 +72,12 @@ function make_delete_list(item_to_delete) {
     }
   }
 
-  let selectable_elements = document.getElementsByClassName('collapsible');
-  let file_icons = document.getElementsByClassName('thumbnail');
+  const selectable_elements = document.getElementsByClassName('collapsible');
+  const file_icons = document.getElementsByClassName('thumbnail');
 
 
   // Select the SVG element using its ID
-  let svgIcon = document.getElementById(item_to_delete_object.id.toString());
+  const svgIcon = document.getElementById(item_to_delete_object.id.toString());
 
   console.log("icon in use:"+icon_in_use.querySelector('use').getAttribute('xlink:href'));
 
@@ -100,10 +100,14 @@ function make_delete_list(item_to_delete) {
 }
 
 function delete_folder() {
+  console.log(delete_list.length);
+  if(delete_list.length != 0){
+    
+  
   let delete_list_string = "[";
   for (let thing of delete_list) {
     delete_list_string += thing.id+",";
-    //todo remove elements from dom
+    //remove elements from dom
     let parent_element = thing.parentElement;
     parent_element.remove();
   }
@@ -112,7 +116,11 @@ function delete_folder() {
   console.log("are you sure you want to delete these items?\n"+delete_list_string);
   // TODO ask for confirmation of delete before sending delete list to flask server
   const url = "/delete_item?junk_items="+delete_list_string;
+  
   load_url(url, function(responseText){
     console.log(responseText);
   });
+  
+  
+  }
 }
