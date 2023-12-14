@@ -1,11 +1,4 @@
 //this script is the controller
-function display_file_names() {
-  const tester_view = document.getElementById("tester1");
-  load_url("/filenames", function(responseText) {
-    tester_view.insertAdjacentHTML("afterbegin", create_links(responseText));
-  });
-}
-
 function get_file_explorer_contents() {
   const manual_explorer = document.getElementById("manual_explorer");
 
