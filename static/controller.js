@@ -97,9 +97,9 @@ function delete_folder() {
   if (delete_list.length != 0) {
     let confirm_text = "";
     if(delete_list.length > 1){
-      confirm_text = `Are you sure you want to delete these ${delete_list.length} items?`;
+      confirm_text = `Are you sure you want to delete these ${delete_list.length} items? All items inside these items will also be deleted.`;
     } else {
-      confirm_text = "Are you sure you want to delete 1 item?";
+      confirm_text = "Are you sure you want to delete 1 item? All items inside this item will also be deleted.";
     }
     if (confirm(confirm_text)) {      // ask for confirmation of delete before sending delete list to flask server
 
