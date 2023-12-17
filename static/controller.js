@@ -96,12 +96,13 @@ function delete_folder() {
   //first check if there is anything selected before sending a delete request to server
   if (delete_list.length != 0) {
     let confirm_text = "";
-    if(delete_list.length > 1){
+    if (delete_list.length > 1) {
       confirm_text = `Are you sure you want to delete these ${delete_list.length} items? All items inside these items will also be deleted.`;
     } else {
       confirm_text = "Are you sure you want to delete 1 item? All items inside this item will also be deleted.";
     }
-    if (confirm(confirm_text)) {      // ask for confirmation of delete before sending delete list to flask server
+    if (confirm(confirm_text)) {
+      // ask for confirmation of delete before sending delete list to flask server
 
       let delete_list_string = "[";
       for (let thing of delete_list) {
@@ -122,4 +123,26 @@ function delete_folder() {
 
     }
   }
+}
+
+function get_manual_view(manual) {
+  console.log("get manual view");
+  const url = `/manual_view?manual=${manual}`;
+  load_url(url, function(responseText) {
+    console.log(responseText);
+    const manual_clicked_on = document.getElementById(manual);
+    const manual_view = document.getElementsByClassName("modal-content");
+    const modal = document.getElementById("myModal");
+    const close_button = document.getElementById("spanclose");
+    
+      modal.style.display = "block";
+    
+    close_button.insertAdjacentHTML("afterend", responseText);
+    //somehow get the responseText displayed on the page as rendered html
+  });
+
+
+  /*
+  send the name of the manual to get the view for to the server
+  */
 }

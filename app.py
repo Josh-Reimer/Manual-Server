@@ -54,7 +54,28 @@ def get_about_page():
 def get_book_page():
 	return render_template('book.html')				
 	
+@app.route('/manual_view')
+def get_manual_view():
+	manual = request.args.get('manual')
 	
+	if "collapsible_" in manual:
+		path = f"static/manuals/{manual.replace('collapsible_', '')}"	
+	elif "content_|" in manual:
+		path = f"static/manuals/{manual.replace('content_|', '').replace('|','/')}"
+	#find the paths to the pdf, thumbnail, and name
+	path_file = open(f"{path}/paths.txt")
+	paths = path_file.readlines()
+	for path in paths:
+		if "pdf=" in path:
+			pdf = path.replace("pdf=","")
+		if "thumbnail=" in path:
+			thumbnail = path.replace("thumbnail=","")
+		if "name=" in path:
+			name = path.replace("name=","")
+	path_file.close()
+	
+	return render_template('manual_view.html', thumbnail_image=thumbnail, manual_name=name,manual_path=pdf)
+
 @app.route('/filenames')
 def get_filenames():
 	rootdir = './static/manuals'
@@ -140,15 +161,20 @@ def save_uploads():
 		new_folder_name = pdf_upload.filename.replace('.pdf','')
 		
 		new_folder = os.mkdir(f"./static/manuals/{folder}/{new_folder_name}")
+		pdf_path = f"./static/manuals/{folder}/{new_folder_name}/{pdf_upload.filename}"
+		pdf_upload.save(pdf_path)
 		
-		pdf_upload.save(f"./static/manuals/{folder}/{new_folder_name}/{pdf_upload.filename}")
-		
-		thumbnail.save(f"./static/manuals/{folder}/{new_folder_name}/{thumbnail.filename}")
+		thumbnail_path = f"./static/manuals/{folder}/{new_folder_name}/{thumbnail.filename}"
+		thumbnail.save(thumbnail_path)
 		
 		short_name_file = open(f"./static/manuals/{folder}/{new_folder_name}/{short_name}",'w')
 		short_name_file.close()
+		
+		paths_file = open(f"./static/manuals/{folder}/{new_folder_name}/paths.txt",'w')
+		paths_file.write(f"pdf={pdf_path}\nthumbnail={thumbnail_path}\nname={short_name}")
+		paths_file.close()
 		return render_template("upload_complete.html")
 		
 if __name__ == '__main__':
 	
-	app.run(debug=False, host=get_ip())
+	app.run(debug=True, host=get_ip())

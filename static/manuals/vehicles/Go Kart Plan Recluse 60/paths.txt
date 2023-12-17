@@ -1,0 +1,3 @@
+pdf=./static/manuals/vehicles/Go Kart Plan Recluse 60/Go Kart Plan Recluse 60.pdf
+thumbnail=./static/manuals/vehicles/Go Kart Plan Recluse 60/gokart.jpeg
+name=Gokart
