@@ -134,9 +134,9 @@ function get_manual_view(manual) {
     const manual_view = document.getElementsByClassName("modal-content");
     const modal = document.getElementById("myModal");
     const close_button = document.getElementById("spanclose");
-    
-      modal.style.display = "block";
-    
+
+    modal.style.display = "block";
+
     close_button.insertAdjacentHTML("afterend", responseText);
     //somehow get the responseText displayed on the page as rendered html
   });
