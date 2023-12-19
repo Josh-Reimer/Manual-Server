@@ -125,24 +125,25 @@ function delete_folder() {
   }
 }
 
+var manual_views_already_loaded = [];
+
 function get_manual_view(manual) {
-  console.log("get manual view");
-  const url = `/manual_view?manual=${manual}`;
-  load_url(url, function(responseText) {
-    console.log(responseText);
-    const manual_clicked_on = document.getElementById(manual);
-    const manual_view = document.getElementsByClassName("modal-content");
-    const modal = document.getElementById("myModal");
-    const close_button = document.getElementById("spanclose");
+  const manual_clicked_on = document.getElementById(manual);
 
-    modal.style.display = "block";
+  if (!manual_views_already_loaded.includes(manual_clicked_on)) {
+    const url = `/manual_view?manual=${manual}`;
+    load_url(url, function(responseText) {
+      manual_views_already_loaded.push(manual_clicked_on);
+      const manual_view = document.getElementsByClassName("modal-content");
+      const modal = document.getElementById("myModal");
+      const close_button = document.getElementById("spanclose");
 
-    close_button.insertAdjacentHTML("afterend", responseText);
-    //somehow get the responseText displayed on the page as rendered html
-  });
-
-
-  /*
+      close_button.insertAdjacentHTML("afterend", responseText);
+      //get the responseText displayed on the page as rendered html
+    });
+    /*
   send the name of the manual to get the view for to the server
   */
+  }
+  modal.style.display = "block";
 }
