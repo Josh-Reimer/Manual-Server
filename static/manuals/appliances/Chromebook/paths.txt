@@ -1,3 +1,0 @@
-pdf=./static/manuals/appliances/Chromebook/Chromebook.pdf
-thumbnail=./static/manuals/appliances/Chromebook/gokart.jpeg
-name=Chromebook

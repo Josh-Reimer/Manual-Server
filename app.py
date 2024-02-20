@@ -34,6 +34,20 @@ def index():
 
 	return render_template('index.html', folders_and_subfolders=folders_and_subfolders)
 	
+messages = []
+	
+@app.route('/update')
+def update():
+	def event_stream():
+		previous_messages = 0
+		while True:
+			if len(messages) > previous_messages:
+				previous_messages += 1
+				yield f"event:refresh\ndata:{messages[-1]}\n\n"
+	return Response(event_stream(), mimetype="text/event-stream")	
+	
+	
+	
 @app.route('/upload.html')
 def get_upload_page():
 	return render_template('upload.html',folders=os.listdir('./static/manuals'))
@@ -119,6 +133,8 @@ def add_folder():
 	os.mkdir(f"./static/manuals/{source}")
 	#create a new folder
 	#what about the folder name
+	messages.append("folder-added")
+	#updating other clients
 	return f"{source}"		
 	
 	
@@ -179,7 +195,8 @@ def delete_item():
 		os.mkdir(f"static/trash/{new_name}")			
 		new_path = f"static/trash/{new_name}"
 		shutil.move(item.path,new_path)
-		
+	messages.append("item-deleted")
+	#updating other clients
 	return "deleting items"	
 	
 @app.route('/upload', methods=['GET','POST'])			
@@ -207,6 +224,8 @@ def save_uploads():
 		paths_file = open(f"./static/manuals/{folder}/{new_folder_name}/paths.txt",'w')
 		paths_file.write(f"pdf={pdf_path}\nthumbnail={thumbnail_path}\nname={short_name}")
 		paths_file.close()
+		messages.append("item-uploaded")
+		#updating other clients
 		return render_template("upload_complete.html")
 		
 if __name__ == '__main__':

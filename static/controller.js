@@ -3,20 +3,30 @@ function get_file_explorer_contents() {
   const manual_explorer = document.getElementById("manual_explorer");
 
   load_url("/filenames", function(responseText) {
-    /*
-    let response_explorer_items = responseText.split("%?%");
-    console.log(responseText);
-    let explorer_items_html = "";
-    for (var item of response_explorer_items) {
-      console.log(item);
-      explorer_items_html += create_manual_explorer_item(item);
-    }
-    manual_explorer.insertAdjacentHTML("afterbegin", explorer_items_html);
-    */
+
     let html = create_explorer_dropdown_items(responseText);
     manual_explorer.insertAdjacentHTML("afterbegin", html);
   });
 }
+
+function check_for_updates() {
+  var targetContainer = document.getElementById("p");
+  var eventSource = new EventSource("/update");
+  eventSource.addEventListener("refresh", function(e) {
+    targetContainer.textContent = e.data;
+    console.log(e.data);
+    refresh_file_explorer(e.data);
+    if (e.data > 20) {
+      targetContainer.style.color = "red";
+    }
+  });
+}
+
+function refresh_file_explorer(data) {
+  const manual_explorer = document.getElementById("manual_explorer");
+  
+}
+
 
 function add_folder() {
   const folder_name = prompt("enter a name for your new folder", "new_folder");
