@@ -1,3 +1,4 @@
+
 /*
 this script is the model
 it only process data and fetches it.
@@ -21,7 +22,7 @@ function create_links(string) {
   list_of_file_names = string.split("%?%");
   let html = "<a ";
   for (let i = 0; i < list_of_file_names.length; ++i) {
-    html += "href='/static/manuals/"+list_of_file_names[i]+"'>"+list_of_file_names[i]+"</a><br><a ";
+    html += "href='static/manuals/"+list_of_file_names[i]+"'>"+list_of_file_names[i]+"</a><br><a ";
   }
   html += "></a>";
   return html;

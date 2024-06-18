@@ -1,0 +1,3 @@
+pdf=./static/manuals/power tools/Screenshot_20240224_125600_Strava.png/Screenshot_20240224_125600_Strava.png
+thumbnail=./static/manuals/power tools/Screenshot_20240224_125600_Strava.png/Screenshot_20240223_093525_WhatsApp.png
+name=Hello

@@ -21,7 +21,7 @@ app = Flask(__name__)
 @app.route('/')	
 @app.route('/index.html')
 def index():
-	rootdir = './static/manuals'
+	rootdir = 'static/manuals'
 	
 	folders_and_subfolders = []
 	folders = os.listdir(rootdir)
@@ -42,8 +42,11 @@ def update():
 		previous_messages = 0
 		while True:
 			if len(messages) > previous_messages:
+				print(messages)
 				previous_messages += 1
 				yield f"event:refresh\ndata:{messages[-1]}\n\n"
+				if len(messages) > 0:
+					messages.pop(-2)
 	return Response(event_stream(), mimetype="text/event-stream")	
 	
 	
@@ -133,7 +136,7 @@ def add_folder():
 	os.mkdir(f"./static/manuals/{source}")
 	#create a new folder
 	#what about the folder name
-	messages.append("folder-added")
+	messages.append(f"folder-added:{source}")
 	#updating other clients
 	return f"{source}"		
 	
@@ -142,6 +145,8 @@ def add_folder():
 @app.route('/delete_item')
 def delete_item():
 	junk_items = request.args.get("junk_items")
+	
+	
 	if junk_items == "":
 		return "zero junk items"
 	junk_items = junk_items.replace("%20"," ").replace("[","").replace("]","")
@@ -195,7 +200,7 @@ def delete_item():
 		os.mkdir(f"static/trash/{new_name}")			
 		new_path = f"static/trash/{new_name}"
 		shutil.move(item.path,new_path)
-	messages.append("item-deleted")
+		messages.append(f"item-deleted:{junk_items}")
 	#updating other clients
 	return "deleting items"	
 	
@@ -231,3 +236,4 @@ def save_uploads():
 if __name__ == '__main__':
 	
 	app.run(debug=True, host=get_ip())
+	#app.run(debug=True, host='localhost')

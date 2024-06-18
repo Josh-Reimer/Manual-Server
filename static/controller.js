@@ -1,4 +1,7 @@
 //this script is the controller
+
+var ADDED_ITEM_ID = null;
+
 function get_file_explorer_contents() {
   const manual_explorer = document.getElementById("manual_explorer");
 
@@ -14,22 +17,39 @@ function check_for_updates() {
   var eventSource = new EventSource("/update");
   eventSource.addEventListener("refresh", function(e) {
     targetContainer.textContent = e.data;
-    console.log(e.data);
     refresh_file_explorer(e.data);
-    if (e.data > 20) {
-      targetContainer.style.color = "red";
+
+    if (e.data.includes("item-deleted")) {
+      let domItem = document.getElementById(e.data.split(":")[1]);
+      if (domItem != null) {
+        domItem.parentElement.remove();
+      }
+
+    } else if (e.data.includes("folder-added")) {
+      let domItem = document.getElementById(e.data.split(":")[1]);
+      const manual_explorer = document.getElementById("manual_explorer");
+      let folder_name = e.data.split(":")[1];
+      console.log(document.getElementById(ADDED_ITEM_ID));
+      if (document.getElementById(ADDED_ITEM_ID) != null) {
+
+        let html = create_manual_explorer_item(folder_name);
+        manual_explorer.insertAdjacentHTML("afterbegin", html);
+      }
+      //the client that deletes or adds stuff should only remove or add ui components once
     }
+    
   });
 }
 
 function refresh_file_explorer(data) {
   const manual_explorer = document.getElementById("manual_explorer");
-  
+
 }
 
 
 function add_folder() {
-  const folder_name = prompt("enter a name for your new folder", "new_folder");
+  const folder_name = prompt("enter a name for your new folder",
+    "new_folder");
   console.log("add_folder function called");
   if (folder_name != null) {
     const manual_explorer = document.getElementById("manual_explorer");
@@ -40,8 +60,7 @@ function add_folder() {
         alert("The folder you are trying to create already exists");
       } else {
         let html = create_manual_explorer_item(responseText);
-        //const fake_id = "collapsible_random1";
-        //let html = `<button class='collapsible'><svg onclick='make_delete_list("${fake_id}")' id='collapsible_random1' class='thumbnail' width='32' height='32' viewBox='0 0 24 22' xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='xMinYMin'><use xlink:href='#img-file-icon'></use></svg>random1</button><div class='content'></div>`;
+        ADDED_ITEM_ID = 'collapsible_${responseText}';
         /*
         To do make sure to add the onclick and the dynamic id to each item added in the client side
         */
