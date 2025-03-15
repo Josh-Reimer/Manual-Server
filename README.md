@@ -1,4 +1,6 @@
 Manual_Server is a simple web app built with python3 flask and pure javascript for managing all your pdf manuals.
+What makes this app different than all the gazillions of other self-hosted apps? It doesn't use a database! It uses the file system entirely! This is partially because I am unfamiliar with databases and also I wanted to be able to easily run this anywhere.
+I might have to migrate to mysql or something sometime.
 
 INSTALLATION
 
