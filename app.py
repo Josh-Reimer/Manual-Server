@@ -148,7 +148,7 @@ def add_folder():
 def delete_item():
 	junk_items = request.args.get("junk_items")
 	
-	os.mkdir("static/trash", exist_ok=True)	#make trash folder if it doesnt already exist
+	os.makedirs("static/trash", exist_ok=True)	#make trash folder if it doesnt already exist
 	if junk_items == "":
 		return "zero junk items"
 	junk_items = junk_items.replace("%20"," ").replace("[","").replace("]","")
