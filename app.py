@@ -4,6 +4,7 @@ from fileinput import filename
 import os
 import shutil
 import socket
+import time
 
 def get_ip():
 	s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
@@ -46,7 +47,8 @@ def update():
 				previous_messages += 1
 				yield f"event:refresh\ndata:{messages[-1]}\n\n"
 				if len(messages) > 0:
-					messages.pop(-2)
+					messages[:] = messages[-10:]  # keep last 10 messages
+			time.sleep(1)
 	return Response(event_stream(), mimetype="text/event-stream")	
 	
 	
@@ -146,7 +148,7 @@ def add_folder():
 def delete_item():
 	junk_items = request.args.get("junk_items")
 	
-	
+	os.mkdir("static/trash", exist_ok=True)	#make trash folder if it doesnt already exist
 	if junk_items == "":
 		return "zero junk items"
 	junk_items = junk_items.replace("%20"," ").replace("[","").replace("]","")
@@ -235,5 +237,5 @@ def save_uploads():
 		
 if __name__ == '__main__':
 	
-	app.run(debug=True, host=get_ip())
+	app.run(debug=True, host=get_ip(), port=5500)
 	#app.run(debug=True, host='localhost')
