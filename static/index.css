@@ -1,55 +1,205 @@
+/* ===========================
+   System Theme Variables
+=========================== */
+:root {
+  /* Light mode */
+  --bg-color: #f5f5f5;
+  --text-color: #222;
+  --card-bg: #fff;
+  --border: #ccc;
+  --accent: #f57c00;
+  --accent-hover: #e06b00;
+  --shadow: rgba(0, 0, 0, 0.15);
+  --toolbar-bg: #ffffffcc;
+  --modal-bg: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1e1e1e;
+    --text-color: #e0e0e0;
+    --card-bg: #2a2a2a;
+    --border: #444;
+    --accent: #ff9800;
+    --accent-hover: #ffa726;
+    --shadow: rgba(0, 0, 0, 0.6);
+    --toolbar-bg: #2a2a2acc;
+    --modal-bg: #2a2a2a;
+  }
+}
+
+/* ===========================
+   Global Styles
+=========================== */
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ===========================
+   Search Area
+=========================== */
 #search_area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 3rem auto;
+  width: 100%;
+}
+
+#search_box {
+  width: 50%;
+  font-size: 18px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#search_box:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-hover);
+}
+
+#search_button {
+  font-size: 18px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--accent);
+  color: white;
+  transition: background-color 0.3s;
+}
+
+#search_button:hover {
+  background-color: var(--accent-hover);
+}
+
+/* ===========================
+   File Explorer
+=========================== */
+#manual_explorer {
+  width: 100%;
+  font-size: 14px;
+  color: var(--text-color);
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+}
+
+.folder {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 4px var(--shadow);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.folder:hover {
+  background-color: var(--accent-hover);
+  color: #fff;
+}
+
+/* ===========================
+   Toolbar
+=========================== */
+#toolbar {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  background-color: var(--toolbar-bg);
+  padding: 0.75rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow);
+  backdrop-filter: blur(6px);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#add_button,
+#delete_button {
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+#add_button:hover,
+#delete_button:hover {
+  background-color: var(--accent);
+  transform: scale(1.1);
+}
+
+/* SVG icons */
+#add_button svg,
+#delete_button svg {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  filter: invert(0);
+  transition: filter 0.3s;
+}
+
+@media (prefers-color-scheme: dark) {
+  #add_button svg,
+  #delete_button svg {
+    filter: invert(1);
   }
-  #search_box {
-    width: 50%;
-    font-size: 18px;
-    border-radius: 8px;
-    padding: 4px;
-    padding-left: 12px;
-  }
-  #search_button {
-    font-size: 18px;
-    border-radius: 8px;
-    padding: 4px 12px;
-    cursor: pointer;
-  }
-    #manual_explorer {
-    width: 100%;
-    font-size: 12px;
-  }
-  #toolbar {
-    text-align: right;
-    margin-top: 3rem;
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    display: flex;
-    gap: 1rem;
-  }
-  #add_icon {
-    height: 100%;
-    width: 100%;
-    pointer-events: none;
-  }
-  #add_button {
-    width: 3rem;
-    border: none;
-    outline: none;
-    background: none;
-  }
-  #trash_can {
-    height: 100%;
-    width: 100%;
-    pointer-events: none;
-  }
-  #delete_button{
-    width: 3rem;
-    border: none;
-    outline: none;
-    background: none;
-  }
+}
+
+/* ===========================
+   Modal (pop_up_manual_view)
+=========================== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  transition: background-color 0.3s;
+}
+#manualview-thumnail-image {
+  width: 320px;
+}
+.modal-content {
+  background-color: var(--modal-bg);
+  margin: 5% auto;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  width: 80%;
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.close {
+  color: var(--text-color);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: var(--accent);
+}

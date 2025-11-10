@@ -54,6 +54,14 @@
 
 
 <!-- popup manual view here -->
+<button onclick="add_folder()" id="add_button">
+<svg width="48" height="48" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMinYMin">
+<use xlink:href="#img-matte-black-plus"></use>
+</svg>
+</button>
+</div>
+
+<!-- moved modal out of the toolbar so it isn't clipped by toolbar styles -->
 <div id="myModal" class="modal">
 <!-- Modal content -->
 <div class="modal-content">
@@ -63,13 +71,6 @@
 </div>
 
 <script src="/static/pop_up_manual_view.js"></script>
-
-<button onclick="add_folder()" id="add_button">
-<svg width="48" height="48" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMinYMin">
-<use xlink:href="#img-matte-black-plus"></use>
-</svg>
-</button>
-</div>
 
 <p id="p"></p>
 
