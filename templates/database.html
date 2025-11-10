@@ -6,6 +6,30 @@
     #heading {
       text-align: center;
     }
+    :root {
+      color-scheme: light dark;
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --link-color: #1a73e8;
+      --border-color: #cccccc;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #121212;
+        --text-color: #eaeaea;
+        --link-color: #8ab4f8;
+        --border-color: #333333;
+      }
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
   </style>
 </head>
 <body>

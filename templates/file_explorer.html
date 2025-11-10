@@ -1,6 +1,74 @@
 <!--
 this template will have the necessary code to generate the file explorers dynamic content
 -->
+<style>
+  :root {
+  color-scheme: light dark;
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --button-bg: #f0f0f0;
+  --button-hover: #e0e0e0;
+  --border-color: #cccccc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #121212;
+    --text-color: #eaeaea;
+    --button-bg: #1e1e1e;
+    --button-hover: #2a2a2a;
+    --border-color: #333333;
+  }
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: system-ui, sans-serif;
+}
+
+button.collapsible,
+button.manual_buttons {
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: 90%;
+  margin: 4px auto;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s ease;
+}
+
+button.collapsible:hover,
+button.manual_buttons:hover {
+  background-color: var(--button-hover);
+}
+
+.content {
+  display: none;
+  margin-left: 24px;
+  border-left: 2px solid var(--border-color);
+  padding-left: 10px;
+}
+
+.thumbnail {
+  flex-shrink: 0;
+  fill: var(--text-color);
+  transition: fill 0.2s ease;
+  
+}
+
+button.collapsible.active + .content {
+  display: block;
+}
+
+</style>
 {% include 'svg/spritesheet.svg' %}
 {% for item in folders_and_subfolders %}
 <button class="collapsible">

@@ -1,82 +1,157 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Upload</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="/static/side_bar.css">
-<meta charset="utf-8">
-<style>
-  #heading {
-    text-align: center;
-  }
-  #upload_area {
-    border-radius: 8px;
-    background-color: #999494;
-    margin-top: 15%;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-  .upload_boxes {
-    padding: 8%;
-    border-radius: 10px;
-  }
-  h4 {
-    padding-top: 3%;
-    padding-left: 3%;
-  }
-  #short_name_input {
-    margin: 8%;
-  }
-  #folder_selection {
-    padding: 4px;
-    margin-left: 8%;
-    border-radius: 10px;
-  }
-  input[type=file] {
-    border-radius: 10px;
-    padding: 4px;
-  }
-  #submit_button {
-    border-radius: 10px;
-    padding: 4px;
-  }
-</style>
+  <link rel="stylesheet" href="/static/side_bar.css">
+
+  <style>
+    :root {
+      /* Light theme defaults */
+      --bg-color: #f5f5f5;
+      --text-color: #222;
+      --card-bg: #ffffff;
+      --accent: #f57c00;
+      --accent-hover: #e06b00;
+      --shadow: rgba(0, 0, 0, 0.1);
+      --border: #ddd;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #1e1e1e;
+        --text-color: #e0e0e0;
+        --card-bg: #2a2a2a;
+        --accent: #ff9800;
+        --accent-hover: #ffa726;
+        --shadow: rgba(0, 0, 0, 0.5);
+        --border: #444;
+      }
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    #heading {
+      text-align: center;
+      margin-top: 80px;
+      font-size: 2rem;
+    }
+
+    #upload_area {
+      border-radius: 16px;
+      background-color: var(--card-bg);
+      max-width: 600px;
+      margin: 5% auto;
+      padding: 5%;
+      box-shadow: 0 4px 16px var(--shadow);
+      border: 1px solid var(--border);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    form h4 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .upload_boxes,
+    #folder_selection,
+    #short_name_input,
+    #submit_button {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      padding: 10px;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    .upload_boxes,
+    #folder_selection,
+    #short_name_input {
+      margin-bottom: 1rem;
+    }
+
+    input[type="file"]::-webkit-file-upload-button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    input[type="file"]::-webkit-file-upload-button:hover {
+      background: var(--accent-hover);
+    }
+
+    #submit_button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #submit_button:hover {
+      background: var(--accent-hover);
+    }
+
+    select option {
+      background: var(--card-bg);
+      color: var(--text-color);
+    }
+  </style>
 </head>
 <body>
+
 <div id="mySidenav" class="sidenav">
+  <div class="menu_icon" onclick="transform_menu_icon(this)">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+  </div>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="settings.html">Settings</a>
+  <a href="upload.html">Upload</a>
+  <a href="database.html">Database</a>
+</div>
 
-<div class="menu_icon" onclick="transform_menu_icon(this)">
-<div class="bar1"></div>
-<div class="bar2"></div>
-<div class="bar3"></div>
-</div>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="settings.html">Settings</a>
-<a href="upload.html">Upload</a>
-<a href="database.html">Database</a>
-</div>
 <script src="/static/side_bar.js"></script>
+
 <h1 id="heading">Upload</h1>
+
 <div id="upload_area">
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <h4>Select a PDF manual</h4>
+    <input type="file" id="pdf_upload" class="upload_boxes" name="pdf_upload" accept=".pdf" required>
 
-<form action="/upload" method="post" enctype="multipart/form-data">
-<h4>Select a pdf manual</h4>
-<input type="file" id="pdf_upload" class="upload_boxes" name="pdf_upload" required>
-<h4>Select a photo to be displayed</h4>
-<input type="file" id="photo_upload" class="upload_boxes" name="photo_upload" required>
-<h4>Choose folder to store manual in</h4>
-<select id="folder_selection" name="folder_selection" required>
-  {% for folder in folders %}
-    <option value="{{ folder }}">{{ folder }}</option>
-  {% endfor %}
-</select>
+    <h4>Select a display photo</h4>
+    <input type="file" id="photo_upload" class="upload_boxes" name="photo_upload" accept="image/*" required>
 
-<h4>Create a short name for the manual</h4>
-<input type="text" id="short_name_input" name="short_name_input" required>
-<input type="submit" id="submit_button">
-</form>
+    <h4>Choose folder to store manual</h4>
+    <select id="folder_selection" name="folder_selection" required>
+      {% for folder in folders %}
+        <option value="{{ folder }}">{{ folder }}</option>
+      {% endfor %}
+    </select>
 
+    <h4>Create a short name</h4>
+    <input type="text" id="short_name_input" name="short_name_input" placeholder="e.g. service_manual" required>
+
+    <input type="submit" id="submit_button" value="Upload">
+  </form>
 </div>
 
 </body>
