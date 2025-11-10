@@ -9,9 +9,9 @@
 <link rel="stylesheet" href="/static/side_bar.css">
 </head>
 <body onload="check_for_updates()">
-<script src="/static/controller.js"></script>
-<script src="/static/side_bar.js"></script>
-<script src="/static/model.js"></script>
+<script src="/static/controller.js" defer></script>
+<script src="/static/side_bar.js" defer></script>
+<script src="/static/model.js" defer></script>
 
 <div id="search_area">
 
@@ -46,7 +46,7 @@
 
 <div id="toolbar">
 
-<button onclick="delete_folder()" id="delete_button">
+<button onclick="delete_folder()" id="delete_button" title="Delete folder">
 <svg width="48" height="48" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMinYMin">
 <use xlink:href="#img-trash-can"></use>
 </svg>
@@ -58,6 +58,7 @@
 <!-- Modal content -->
 <div class="modal-content">
 <span id="spanclose" class="close">&times;</span>
+<div id="manual_view_content"></div>
 </div>
 </div>
 
