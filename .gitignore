@@ -9,3 +9,7 @@ static/trash/
 *.png
 *.jpeg
 *.txt
+*.pyc
+__pycache__/
+.vscode/
+AGENTS.md
