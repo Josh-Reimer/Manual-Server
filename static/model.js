@@ -29,7 +29,7 @@ function create_links(string) {
 }
 
 function create_manual_explorer_item(item_name) {
-  return `<button class="collapsible"><svg onclick="make_delete_list('collapsible_${item_name}') id='collapsible_${item_name}' class="thumbnail" width="32" height="32" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMinYMin"><use xlink:href="#img-file-icon"></use></svg>${item_name}</button><div class="content"></div>`;
+  return `<button class="collapsible"><svg onclick="make_delete_list('collapsible_${item_name}')" id="collapsible_${item_name}" class="thumbnail" width="32" height="32" viewBox="0 0 24 22" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMinYMin"><use xlink:href="#img-file-icon"></use></svg>${item_name}</button><div class="content"></div>`;
 }
 
 function create_explorer_dropdown_items(input_string) {
