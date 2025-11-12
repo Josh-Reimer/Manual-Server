@@ -2,6 +2,33 @@
 
 var ADDED_ITEM_ID = null;
 
+function attachCollapsibleListeners() {
+    let coll = document.getElementsByClassName("collapsible");
+    let i;
+
+    for (i = 0; i < coll.length; i++) {
+      // Skip if already has listener to avoid duplicates
+      if (!coll[i].hasAttribute('data-listener-attached')) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+          }
+        });
+        coll[i].setAttribute('data-listener-attached', 'true');
+      }
+    }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  attachCollapsibleListeners();
+  check_for_updates();
+});
+
 function get_file_explorer_contents() {
   const manual_explorer = document.getElementById("manual_explorer");
 
@@ -65,6 +92,8 @@ function add_folder() {
         To do make sure to add the onclick and the dynamic id to each item added in the client side
         */
         manual_explorer.insertAdjacentHTML("afterbegin", html);
+        // Attach event listeners to the new collapsible
+        attachCollapsibleListeners();
       }
     });
   }

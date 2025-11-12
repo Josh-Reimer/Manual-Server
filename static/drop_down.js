@@ -3,17 +3,10 @@
   code in this script is for the file explorer
   drop-down
   */
-    let coll = document.getElementsByClassName("collapsible");
-    let i;
 
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-        }
-      });
-    }
+// Attach listeners on page load
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof attachCollapsibleListeners === 'function') {
+    attachCollapsibleListeners();
+  }
+});
